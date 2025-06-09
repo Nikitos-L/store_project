@@ -9,6 +9,8 @@ WORKDIR /subs_store
 COPY requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 
+# RUN apk add postgresql-client build-base postgresql-dev
+
 COPY subs_store /subs_store
 
 USER store-user

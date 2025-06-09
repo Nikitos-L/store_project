@@ -7,7 +7,7 @@ services:
     volumes:
       - ./subs_store:/subs_store
     environment:
-      - DB_HOST=database
+      - DB_HOST=postgres
       - DB_NAME=dbname
       - DB_USER=dbuser
       - DB_PASS=pass
