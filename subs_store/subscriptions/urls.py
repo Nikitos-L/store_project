@@ -9,7 +9,5 @@ router.register(r'usersubs', UserSubscriptionsAPIViewSet)
 
 urlpatterns = [
     path('tariffs/', views.TariffsAPIList.as_view()),
-    path('', include(router.urls)),
-    # path('usersubs/', views.UserSubscriptionsAPIList.as_view()),
-    # path('usersubs/<int:pk>/', views.UserSubscriptionsAPIDetail.as_view())
+    path('', include(router.urls))
 ]

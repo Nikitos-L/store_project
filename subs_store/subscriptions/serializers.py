@@ -17,12 +17,3 @@ class UserSubscriptionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserSubscriptions
         fields = '__all__'
-
-
-# class CustomUserSerializer(serializers.ModelSerializer):
-#     subscriptions = serializers.PrimaryKeyRelatedField(many=True,
-#                                                        queryset=UserSubscriptions.objects.all())
-#
-#     class Meta:
-#         model = settings.AUTH_USER_MODEL
-#         fields = ['id', 'username', 'subscriptions']

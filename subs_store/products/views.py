@@ -1,4 +1,4 @@
-from rest_framework import generics, viewsets
+from rest_framework import viewsets, permissions
 
 from products.models import Orders
 from products.serializers import OrdersSerializer
@@ -8,16 +8,12 @@ from products.serializers import OrdersSerializer
 class OrdersAPIViewSet(viewsets.ModelViewSet):
     queryset = Orders.objects.all()
     serializer_class = OrdersSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-
-# class OrdersAPIList(generics.ListCreateAPIView):
-#     queryset = Orders.objects.all()
-#     serializer_class = OrdersSerializer
-#
-#
-# class OrdersAPIDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Orders.objects.all()
-#     serializer_class = OrdersSerializer
+    def get_queryset(self):
+        if self.request.user.username == 'admin':
+            return super().get_queryset()
+        return super().get_queryset().filter(user=self.request.user.id)

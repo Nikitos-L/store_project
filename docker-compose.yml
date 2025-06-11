@@ -7,13 +7,14 @@ services:
     volumes:
       - ./subs_store:/subs_store
     environment:
-      - DB_HOST=postgres
-      - DB_NAME=dbname
-      - DB_USER=dbuser
-      - DB_PASS=pass
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
 
     command: "python manage.py runserver 0.0.0.0:8000"
-
+    env_file:
+      - .env
     depends_on:
       - postgres
 
@@ -21,16 +22,16 @@ services:
     image: postgres:17.5-alpine
     container_name: my-postgres
     environment:
-      - POSTGRES_DB=dbname
-      - POSTGRES_USER=dbuser
-      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
   pgadmin:
     image: elestio/pgadmin
     container_name: my-pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@google.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - "8080:80"
     depends_on:
