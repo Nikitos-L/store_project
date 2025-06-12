@@ -12,7 +12,9 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
 
-    command: "python manage.py runserver 0.0.0.0:8000"
+    command: >
+      sh -c "(python manage.py runserver 0.0.0.0:8000 &) &&
+                python bot_tg.py"
     env_file:
       - .env
     depends_on:

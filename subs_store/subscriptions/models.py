@@ -48,6 +48,7 @@ class UserSubscriptions(models.Model):
 
 
 class CustomUser(AbstractUser):
+    tg_id = models.PositiveBigIntegerField(default=0)
     phone = models.CharField(
         max_length=20,
         validators=[
