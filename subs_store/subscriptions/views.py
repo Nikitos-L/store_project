@@ -1,7 +1,6 @@
 from rest_framework import generics, permissions, viewsets
 
 from subscriptions.models import UserSubscriptions, Tariffs
-from subscriptions.permissions import IsUserOrReadOnly
 from subscriptions.serializers import TariffsSerializer, UserSubscriptionsSerializer
 
 

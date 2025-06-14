@@ -1,4 +1,4 @@
-from sqlalchemy import update
+from sqlalchemy import update, select
 from sqlalchemy.orm import Session
 from telebot import types, TeleBot
 
@@ -43,6 +43,16 @@ def message_phone(message):
     with Session(engine) as session:
         session.execute(stmt)
         session.commit()
+
+
+
+def notification_for_user(username):
+    session = Session(engine)
+    stmt = select(CustomUser).where(CustomUser.username == username)
+    result = session.scalars(stmt).one()
+    bot.send_message(result.tg_id, f"Ваш заказ успешно создан. Спасибо!")
+
+
 
 
 if __name__ == '__main__':

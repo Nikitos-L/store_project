@@ -12,9 +12,22 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
 
-    command: >
-      sh -c "(python manage.py runserver 0.0.0.0:8000 &) &&
-                python bot_tg.py"
+    command: "python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+  tg_bot:
+    build: .
+    volumes:
+      - ./subs_store:/subs_store
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+    command: "python bot_tg.py"
     env_file:
       - .env
     depends_on:

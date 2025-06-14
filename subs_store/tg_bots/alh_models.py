@@ -10,8 +10,6 @@ engine = create_engine(
     echo=True
 )
 
-# session_maker = sessionmaker(engine, expire_on_commit=False)
-
 
 class Base(DeclarativeBase):
     pass
@@ -38,17 +36,3 @@ class CustomUser(Base):
 
     def __repr__(self):
         return str(self)
-
-
-
-# int_pk = Annotated[int, mapped_column(primary_key=True)]
-# str_uniq = Annotated[str, mapped_column(unique=True, nullable=False)]
-# str_null_true = Annotated[str, mapped_column(nullable=True)]
-# id: Mapped[int_pk]
-# title: Mapped[str] = mapped_column(Text, nullable=False)
-# price: Mapped[str] = mapped_column(Text, nullable=False)
-# count: Mapped[int] = mapped_column(default=0, server_default=text('0'))
-# description: Mapped[str] = mapped_column(Text, nullable=False)
-# is_featured: Mapped[bool] = mapped_column(Boolean,
-#                                           nullable=False,
-#                                           server_default=false())

@@ -16,12 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from rest_framework.routers import DefaultRouter
-#
-# from subscriptions.views import UserSubscriptionsAPIViewSet
-#
-# router = DefaultRouter()
-# router.register(r'usersubs', UserSubscriptionsAPIViewSet)
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
