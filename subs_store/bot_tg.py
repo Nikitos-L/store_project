@@ -50,7 +50,8 @@ def notification_for_user(username):
     session = Session(engine)
     stmt = select(CustomUser).where(CustomUser.username == username)
     result = session.scalars(stmt).one()
-    bot.send_message(result.tg_id, f"Ваш заказ успешно создан. Спасибо!")
+    if result.tg_id:
+        bot.send_message(result.tg_id, f"Ваш заказ успешно создан. Спасибо!")
 
 
 
